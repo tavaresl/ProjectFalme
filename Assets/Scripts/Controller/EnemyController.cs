@@ -22,6 +22,12 @@ public class EnemyController : MonoBehaviour
         Monsters = monsters;
     }
 
+    public void Init(MonsterSpawner monsterSpawner, Player enemy)
+    {
+        MonsterSpawner = monsterSpawner;
+        Enemy = enemy;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

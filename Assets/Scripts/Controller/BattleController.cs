@@ -17,12 +17,17 @@ namespace Assets.Scripts.Controller
 
         [SerializeField]
         public EnemyController EnemyCharacter { get; private set; }
+
+        [SerializeField]
+        public MonsterSpawner MonsterSpawner { get; private set; }
+
         public IBattlePhase CurrentPhase { get; private set; }
 
         private void Start()
         {
             Battle.Init();
             PlayerCharacter.Init(Battle.Player);
+            EnemyCharacter.Init(MonsterSpawner, Battle.Enemy);
 
             CurrentPhase = new DraftPhase();
             CurrentPhase.Execute(this);
