@@ -17,12 +17,17 @@ namespace Assets.Scripts.Controller
 
         [SerializeField]
         public EnemyController EnemyCharacter { get; private set; }
+
+        [SerializeField]
+        public MonsterSpawner MonsterSpawner { get; private set; }
+
         public IBattlePhase CurrentPhase { get; private set; }
 
         private void Start()
         {
             Battle.Init();
             PlayerCharacter.Init(Battle.Player);
+            EnemyCharacter.Init(MonsterSpawner, Battle.Enemy);
 
             CurrentPhase = new DraftPhase();
             CurrentPhase.Execute(this);
@@ -40,12 +45,6 @@ namespace Assets.Scripts.Controller
 
         public void SortAttackers()
         {
-            //AttackOrder = new List<IList<Monster>> {PlayerCharacter.Player.MonstersInCombat, EnemyCharacter.Enemy.MonstersInCombat}
-            //    .SelectMany(m => m)
-            //    .OrderBy(m => m.Speed)
-            //    .Reverse()
-            //    .ToList();
-
             AttackOrder = new List<IList<MonsterController>> { PlayerCharacter.Monsters, EnemyCharacter.Monsters}
                 .SelectMany(m => m)
                 .OrderBy(m => m.Monster.Speed)

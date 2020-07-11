@@ -15,7 +15,6 @@ namespace Assets.Scripts.Domain
         public int Defense { get; set; }
 
         public int Speed { get; set; }
-
         public IMonsterType Type { get; set; }
         public Humour Humour { get; set; }
 
