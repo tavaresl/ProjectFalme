@@ -1,3 +1,5 @@
+using System;
+
 namespace Assets.Scripts.Domain
 {
     public interface IMonsterType

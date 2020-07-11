@@ -21,6 +21,8 @@ namespace Assets.Scripts.Controller
 
         [Range(0, 5)]
         public int speed;
+
+        [SerializeField]
         public IMonsterType type;
         public Humour humour;
 
