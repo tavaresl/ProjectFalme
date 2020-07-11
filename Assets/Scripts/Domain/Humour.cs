@@ -1,16 +1,29 @@
+using System;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Domain
 {
-    public interface IHumour
+    public abstract class Humour
     {
-        Action GetAction(Suggestion suggestion, float currentHP);
-        Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters);
-        // Aggressive, // Tende a atacar
-        // Pacific, // Tende a defender
-        // Contrarian, // Tende a fazer a ação contrária da sugestão
+        public abstract Action GetAction(Suggestion suggestion, float currentHP);
+        public virtual Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters)
+        {
+            var rand = new Random();
+            if (action == Action.Attack)
+            {
+                return EnemyMonsters[rand.Next(0, EnemyMonsters.Count)];
+            }
+            if (action == Action.Buff)
+            {
+                return PlayerMonsters[rand.Next(0, PlayerMonsters.Count)];
+            }
+            return self;
+        }
+        // Aggressive, // Tende a atacar DONE
+        // Pacific, // Tende a defender DONE
+        // Contrarian, // Tende a fazer a ação contrária da sugestão DONE
         // Rebel, // Sugestão tem pouca influência, e pode fugir
-        // Lazy, // Tende a não fazer nada
-        // Obedient // Tende a seguir a sugestão
+        // Lazy, // Tende a não fazer nada DONE
+        // Obedient // Tende a seguir a sugestão DONE
     }
 }

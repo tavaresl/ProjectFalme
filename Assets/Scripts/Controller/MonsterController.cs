@@ -20,7 +20,7 @@ namespace Assets.Scripts.Controller
         [Range(0, 5)]
         public int speed;
         public MonsterType type;
-        public IHumour humour;
+        public Humour humour;
 
         public void Init(Monster monster)
         {
