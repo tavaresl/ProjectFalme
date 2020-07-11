@@ -7,6 +7,7 @@ namespace Assets.Scripts.Domain
     {
         public string Name { get; set; }
 
+        public int MaxHealth { get; set; }
         public int Health { get; set; }
 
         public int Strength { get; set; }
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Domain
 
         public Action PickAction(Suggestion suggestion)
         {
-            return Humour.GetAction(suggestion);
+            return Humour.GetAction(suggestion, (float)Health/(float)MaxHealth);
         }
 
         public void TakeHit(int attackValue, IMonsterType attackerType)

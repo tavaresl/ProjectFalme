@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+
 namespace Assets.Scripts.Domain
 {
     public interface IHumour
     {
-        public Action GetAction(Suggestion suggestion);
+        Action GetAction(Suggestion suggestion, float currentHP);
+        Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters);
         // Aggressive, // Tende a atacar
         // Pacific, // Tende a defender
         // Contrarian, // Tende a fazer a ação contrária da sugestão
