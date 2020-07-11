@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -37,16 +39,17 @@ namespace Assets.Scripts.Controller
             //};
         }
 
-        public void DoAction(Suggestion suggestion)
+        public Action PickAction(Suggestion suggestion)
         {
-            Action action = Monster.PickAction(suggestion);
+            return Monster.PickAction(suggestion);
             //DO STUFF
 
+            /*
             switch(action)
             {
                 case Action.Attack:
                 {
-                    //do stuff
+                    humour.GetTarget(Action.Attack, Monster, )
                     break;
                 } 
                 case Action.Defend:
@@ -74,6 +77,13 @@ namespace Assets.Scripts.Controller
                     break;
                 }
             }
+            */
+        }
+
+        public void Do(Action action, IList<Monster> playerMonsters, IList<Monster> enemyMonsters)
+        {
+            Monster target = humour.GetTarget(action, Monster, playerMonsters, enemyMonsters);
+            target.TakeHitFrom(Monster);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Domain
         private const int ValueVulnerability = 3;
         private IMonsterType typeVulnerability = new FallType();
 
-        public int addVulnerability(IMonsterType attackerType)
+        public int AddVulnerability(IMonsterType attackerType)
         {
             if(attackerType.Equals(typeVulnerability)){
                 return ValueVulnerability;

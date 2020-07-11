@@ -6,7 +6,7 @@ namespace Assets.Scripts.Controller.BattleState
     {
         public void Execute(BattleController battle)
         {
-            throw new System.NotImplementedException();
+            battle.SortAttackers();
         }
 
         public void Finish()

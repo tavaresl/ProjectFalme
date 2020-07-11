@@ -2,6 +2,6 @@ namespace Assets.Scripts.Domain
 {
     public interface IMonsterType
     {
-        public int addVulnerability(IMonsterType attackerType);
+        public int AddVulnerability(IMonsterType attackerType);
     }
 }
