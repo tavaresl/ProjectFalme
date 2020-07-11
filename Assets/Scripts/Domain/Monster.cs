@@ -15,6 +15,7 @@ namespace Assets.Scripts.Domain
         public int Speed { get; set; }
         public MonsterType Type { get; set; }
         public IHumour Humour { get; set; }
+        public bool Fled { get; set; }
 
         public Action PickAction(Suggestion suggestion)
         {

@@ -17,6 +17,12 @@ namespace Assets.Scripts.Controller
             //GET SUGGESTION
         }
 
+        public bool HasPickedSuggestion()
+        {
+            // Retorna se a pessoa já selecionou uma sugestão
+            return true;
+        }
+
         public void SendSuggestion()
         {
             //Player List Suggestions
