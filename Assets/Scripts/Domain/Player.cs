@@ -10,20 +10,20 @@ namespace Assets.Scripts.Domain
         public IList<Suggestion> Suggestions { get; set; }
         public IList<Monster> Monsters { get; set; }
 
-        public void SortMonsters()
-        {
-            Monsters.OrderBy(m => m.speed);
-        }
+        // public void SortMonsters()
+        // {
+        //     Monsters.OrderBy(m => m.Speed);
+        // }
 
-        public void PickMonster()
-        {
-            PickedMonster = Monsters.LastOrDefault();
+        // public void PickMonster()
+        // {
+        //     PickedMonster = Monsters.LastOrDefault();
 
-            if (PickedMonster != null)
-            {
-                Monsters.Remove(PickedMonster);
-            }
-        }
+        //     if (PickedMonster != null)
+        //     {
+        //         Monsters.Remove(PickedMonster);
+        //     }
+        // }
 
         public bool HasMonsterAvailable()
         {

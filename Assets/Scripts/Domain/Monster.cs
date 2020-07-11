@@ -2,23 +2,18 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
-    public class Monster : MonoBehaviour
+    public class Monster
     {
-        public new string name;
-    
-        [Range(0, 100)]
-        public int health;
+        public string Name { get; set; }
 
-        [Range(0,10)]
-        public int strength;
+        public int Health { get; set; }
 
-        [Range(0,10)]
-        public int defense;
+        public int Strength { get; set; }
 
-        [Range(0,5)]
-        public int speed;
-        public MonsterType type;
-        public Humour humour;
+        public int Defense { get; set; }
+        public int Speed { get; set; }
+        public MonsterType Type { get; set; }
+        public Humour Humour { get; set; }
 
         public void PickAction(Suggestion suggestion)
         {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1606154847274670384}
   - component: {fileID: 1606154847274670385}
-  - component: {fileID: 1606154847274670390}
+  - component: {fileID: -6618591382668277141}
   m_Layer: 0
   m_Name: GatoDoPedro
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1606154847274670390
+--- !u!114 &-6618591382668277141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,13 +91,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1606154847274670391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fb592e882ecbc46b6d9631edafc0c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9de61cfe5a9d0a245882d170dde20fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Milkshake
   health: 100
-  strength: 5
-  defense: 7
+  strength: 6
+  defense: 5
   speed: 5
   type: 4
   humour: 3

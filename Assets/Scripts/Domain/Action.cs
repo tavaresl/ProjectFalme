@@ -3,7 +3,8 @@ namespace Assets.Scripts.Domain
     public enum Action
     {
         Attack,
-        Idle,
+        DoNothing,
+        Buff,
         Defend,
         Flee
     }
