@@ -18,4 +18,9 @@ public class SquareBehaviours : MonoBehaviour
         Vel += acc * Time.deltaTime;
         gameObject.transform.position += Vel;
     }
+
+    void FixedUpdate()
+    {
+
+    }
 }
