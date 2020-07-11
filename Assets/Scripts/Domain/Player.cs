@@ -27,7 +27,7 @@ namespace Assets.Scripts.Domain
 
         public bool CanKeepFighting()
         {
-            return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
+            return MonstersInCombat.Any(m => m.Health > 0 && !m.Fled); // Verificar necessidade de checar o monstro pickado
         }
     }
 }

@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
 
     public void Draft()
     {
-        // Fazer com que o Enemy faça o draft dos monstros que irá usar em batalha
         IList<MonsterController> monsters = new List<MonsterController>();
 
         for (int i = 0; i < 3; i++)
