@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -19,7 +21,7 @@ namespace Assets.Scripts.Controller
 
         [Range(0, 5)]
         public int speed;
-        public MonsterType type;
+        public IMonsterType type;
         public Humour humour;
 
         public void Init(Monster monster)
@@ -37,10 +39,51 @@ namespace Assets.Scripts.Controller
             //};
         }
 
-        public void DoAction(Suggestion suggestion)
+        public Action PickAction(Suggestion suggestion)
         {
-            var action = Monster.PickAction(suggestion);
+            return Monster.PickAction(suggestion);
             //DO STUFF
+
+            /*
+            switch(action)
+            {
+                case Action.Attack:
+                {
+                    humour.GetTarget(Action.Attack, Monster, )
+                    break;
+                } 
+                case Action.Defend:
+                {
+                    //do stuff
+                    break;
+                }
+                case Action.Buff: 
+                {
+                    //do stuff
+                    break;
+                }
+                case Action.DoNothing:
+                { 
+                    //do stuff
+                    break;
+                }
+                case Action.Flee:
+                {
+                     //do stuff
+                    break;
+                }
+                default: 
+                {
+                    break;
+                }
+            }
+            */
+        }
+
+        public void Do(Action action, IList<Monster> playerMonsters, IList<Monster> enemyMonsters)
+        {
+            Monster target = humour.GetTarget(action, Monster, playerMonsters, enemyMonsters);
+            target.TakeHitFrom(Monster);
         }
     }
 }

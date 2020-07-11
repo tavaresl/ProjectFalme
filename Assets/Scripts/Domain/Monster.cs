@@ -13,8 +13,10 @@ namespace Assets.Scripts.Domain
         public int Strength { get; set; }
 
         public int Defense { get; set; }
+
         public int Speed { get; set; }
-        public MonsterType Type { get; set; }
+
+        public IMonsterType Type { get; set; }
         public Humour Humour { get; set; }
 
         public Action PickAction(Suggestion suggestion)
@@ -22,26 +24,21 @@ namespace Assets.Scripts.Domain
             return Humour.GetAction(suggestion, (float)Health/(float)MaxHealth);
         }
 
-        public void TakeHit(int attackValue, MonsterType attackerType)
+        public void TakeHitFrom(Monster attacker)
         {
-            var damage = (attackValue - Defense) * GetDamageModifier(attackerType);
+            var damage = (attacker.Strength - Defense) * GetDamageModifier(attacker.Type);
             Health -= (int)Math.Floor(damage > 0 ? damage : 1);
         }
 
-        public float GetDamageModifier(MonsterType attackerType)
-        {
-#warning TODO: Implentar buffs e calculo de vantagem
-            //Calcular beseado em tipo e buffs;
-            return 0f;
-        }
+        public float GetDamageModifier(IMonsterType attackerType) => this.Type.AddVulnerability(attackerType);
     }
 
-    public enum MonsterType
+   /* public enum MonsterType
     {
         Summer,
         Fall,
         Winter,
         Spring,
         Catlike,
-    }
+    }*/
 }
