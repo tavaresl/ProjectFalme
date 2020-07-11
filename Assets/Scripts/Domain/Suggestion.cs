@@ -1,7 +1,10 @@
 namespace Assets.Scripts.Domain
 {
-    public class Suggestion
+    public enum Suggestion
     {
-
+        Attack,
+        Defend,
+        Support,
+        Whatever,
     }
 }
