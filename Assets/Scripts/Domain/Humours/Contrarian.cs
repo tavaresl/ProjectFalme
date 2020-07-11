@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Domain
+namespace Assets.Scripts.Domain.Humours
 {
 
-    public class Contrarian : IHumour
+    public class Contrarian : Humour
     {
         Suggestion PreviousSuggestion { get; set; }
-        public Action GetAction(Suggestion suggestion, float currentHP)
+        public override Action GetAction(Suggestion suggestion, float currentHP)
         {
             var AttackChance = 3;
             var DefendChance = 3;
@@ -70,11 +70,6 @@ namespace Assets.Scripts.Domain
                 return Action.Buff;
             else
                 return Action.DoNothing;
-        }
-
-        public Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
