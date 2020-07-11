@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
     public class Player
     {
-        public IList<Suggestion> Suggestions { get; set; }
-        public IList<Monster> MonstersInCombat { get; set; }
-        public IList<Monster> AllMonsters { get; set; }
+        public IList<Suggestion> Suggestions { get; private set; }
+        public IList<Monster> MonstersInCombat { get; private set; }
+        public IList<Monster> AllMonsters { get; private set; }
 
         public IList<Monster> GetRandomMonsters()
         {
@@ -28,7 +27,7 @@ namespace Assets.Scripts.Domain
 
         public bool CanKeepFighting()
         {
-            return MonstersInCombat.Any(m => m.Health > 0 && !m.Fled); // Verificar necessidade de checar o monstro pickado
+            return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
         }
     }
 }

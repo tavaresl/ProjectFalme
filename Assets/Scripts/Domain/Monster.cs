@@ -25,13 +25,13 @@ namespace Assets.Scripts.Domain
             return Humour.GetAction(suggestion, (float)Health/(float)MaxHealth);
         }
 
-        public void TakeHit(int attackValue, IMonsterType attackerType)
+        public void TakeHitFrom(Monster attacker)
         {
-            var damage = (attackValue - Defense) * GetDamageModifier(attackerType);
+            var damage = (attacker.Strength - Defense) * GetDamageModifier(attacker.Type);
             Health -= (int)Math.Floor(damage > 0 ? damage : 1);
         }
 
-        public float GetDamageModifier(IMonsterType attackerType) => this.Type.addVulnerability(attackerType);
+        public float GetDamageModifier(IMonsterType attackerType) => this.Type.AddVulnerability(attackerType);
     }
 
    /* public enum MonsterType

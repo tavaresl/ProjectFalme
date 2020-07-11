@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Controller.BattleState;
 using Assets.Scripts.Domain;
 using UnityEngine;
@@ -8,6 +10,8 @@ namespace Assets.Scripts.Controller
     {
         public Battle Battle { get; set; }
 
+        public IList<MonsterController> AttackOrder { get; private set; }
+
         [SerializeField]
         public PlayerController PlayerCharacter { get; private set; }
 
@@ -17,10 +21,10 @@ namespace Assets.Scripts.Controller
 
         private void Start()
         {
-            CurrentPhase = new DraftPhase();
             Battle.Init();
             PlayerCharacter.Init(Battle.Player);
 
+            CurrentPhase = new DraftPhase();
             CurrentPhase.Execute(this);
         }
 
@@ -32,6 +36,15 @@ namespace Assets.Scripts.Controller
                 CurrentPhase = CurrentPhase.GoToNext();
                 CurrentPhase.Execute(this);
             }
+        }
+
+        public void SortAttackers()
+        {
+            AttackOrder = new List<IList<MonsterController>> { PlayerCharacter.Monsters, EnemyCharacter.Monsters}
+                .SelectMany(m => m)
+                .OrderBy(m => m.Monster.Speed)
+                .Reverse()
+                .ToList();
         }
     }
 }

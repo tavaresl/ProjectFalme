@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -25,55 +27,17 @@ namespace Assets.Scripts.Controller
         public void Init(Monster monster)
         {
             Monster = monster;
-            //Monster = new Monster
-            //{
-            //    Name = name,
-            //    Health = health,
-            //    Strength = strength,
-            //    Defense = defense,
-            //    Speed = speed,
-            //    Humour = humour,
-            //    Type = type
-            //};
         }
 
-        public void DoAction(Suggestion suggestion)
+        public Action PickAction(Suggestion suggestion)
         {
-            Action action = Monster.PickAction(suggestion);
-            //DO STUFF
+            return Monster.PickAction(suggestion);
+        }
 
-            switch(action)
-            {
-                case Action.Attack:
-                {
-                    //do stuff
-                    break;
-                } 
-                case Action.Defend:
-                {
-                    //do stuff
-                    break;
-                }
-                case Action.Buff: 
-                {
-                    //do stuff
-                    break;
-                }
-                case Action.DoNothing:
-                { 
-                    //do stuff
-                    break;
-                }
-                case Action.Flee:
-                {
-                     //do stuff
-                    break;
-                }
-                default: 
-                {
-                    break;
-                }
-            }
+        public void Do(Action action, IList<Monster> playerMonsters, IList<Monster> enemyMonsters)
+        {
+            Monster target = humour.GetTarget(action, Monster, playerMonsters, enemyMonsters);
+            target.TakeHitFrom(Monster);
         }
     }
 }
