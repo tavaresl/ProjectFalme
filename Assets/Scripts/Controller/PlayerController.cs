@@ -10,13 +10,22 @@ namespace Assets.Scripts.Controller
         public Suggestion Suggestion { get; private set; }
         public Player Player { get; private set; }
         public IList<MonsterController> Monsters { get; private set; }
-        public bool HasDrafted { get; private set; }
+        public MonsterSpawner MonsterSpawner { get; private set; }
+        public bool HasDrafted => Player.FinishedDraft();
         public bool HasSuggested { get; private set; }
 
-        public void Init(Player player)
+        public void Init(MonsterSpawner monsterSpawner, Player player)
         {
             Player = player;
             Monsters = new List<MonsterController>();
+            MonsterSpawner = monsterSpawner;
+
+            for (int i = 0; i < 6; i++)
+            {
+                MonsterController monsterController = MonsterSpawner.Spawn().GetComponent<MonsterController>();
+                Player.ChooseMonster(monsterController.Monster);
+                Monsters.Add(monsterController);
+            }
         }
 
         public void Update()
@@ -26,7 +35,7 @@ namespace Assets.Scripts.Controller
 
         public void Draft()
         {
-            // Solicitar para a pessoa escolher os pokemons que irá usar na batalha
+            Player.PickMonsters();
         }
 
         public void PickSuggestion()

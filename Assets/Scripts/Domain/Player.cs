@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assets.Scripts.Domain
 {
@@ -9,15 +10,20 @@ namespace Assets.Scripts.Domain
         public IList<Monster> MonstersInCombat { get; private set; }
         public IList<Monster> AllMonsters { get; private set; }
 
-        public IList<Monster> GetRandomMonsters()
+        public void ChooseMonster(Monster monster)
         {
-            //Monster.GetRandomMonster
-            return new List<Monster>();
+            AllMonsters.Add(monster);
         }
 
-        public void PickMonster()
+        public void PickMonsters()
         {
-            //DRAFT
+            for (int i = 0; i < 3; i++)
+                MonstersInCombat.Add(AllMonsters[i]);
+        }
+
+        public bool FinishedDraft()
+        {
+            return MonstersInCombat.Count == 3;
         }
 
         public void Init()
@@ -27,7 +33,7 @@ namespace Assets.Scripts.Domain
 
         public bool CanKeepFighting()
         {
-            return MonstersInCombat.Any(m => m.Health > 0 && !m.Fled); // Verificar necessidade de checar o monstro pickado
+            return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
         }
     }
 }
