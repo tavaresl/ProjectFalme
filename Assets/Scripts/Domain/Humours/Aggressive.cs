@@ -8,7 +8,7 @@ namespace Assets.Scripts.Domain.Humours
     {
         public Action GetAction(Suggestion suggestion, float currentHP)
         {
-            var AttackChance = 3;
+            var AttackChance = 2;
             var DefendChance = 1;
             var BuffChance = 1;
 
@@ -27,11 +27,16 @@ namespace Assets.Scripts.Domain.Humours
                     break;
             }
 
+            if (currentHP < 0.2)
+            {
+                AttackChance += 1;
+            }
+
             var rand = new Random();
             var roll = rand.Next(0, AttackChance + DefendChance + BuffChance);
             if (roll > AttackChance)
                 return Action.Attack;
-            if (roll < AttackChance && roll > AttackChance + DefendChance)
+            if (roll > AttackChance && roll < AttackChance + DefendChance)
                 return Action.Defend;
             else
                 return Action.Buff;
