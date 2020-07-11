@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Domain.Humours
 {
-    public class Pacifist : Humour
+    public class Rebel : Humour
     {
         public override Action GetAction(Suggestion suggestion, float currentHP)
         {
-            var AttackChance = 1;
-            var DefendChance = 2;
-            var BuffChance = 2;
+            var AttackChance = 3;
+            var DefendChance = 3;
+            var BuffChance = 3;
             var DoNothingChance = 1;
-            var FleeChance = 0;
+            var FleeChance = 1;
 
             switch (suggestion)
             {
@@ -20,24 +20,26 @@ namespace Assets.Scripts.Domain.Humours
                     AttackChance += 1;
                     break;
                 case Suggestion.Defend:
-                    DefendChance += 2;
+                    DefendChance += 1;
                     break;
                 case Suggestion.Support:
-                    BuffChance += 2;
+                    BuffChance += 1;
                     break;
                 case Suggestion.Whatever:
-                    DefendChance += 1;
-                    BuffChance += 1;
+                    AttackChance += 2;
+                    DefendChance += 2;
+                    BuffChance += 2;
                     DoNothingChance += 2;
+                    FleeChance += 2;
+                    break;
+                default:
                     break;
             }
 
             if (currentHP < 0.15)
             {
-                AttackChance -= 1;
-                DefendChance += 2;
-                FleeChance += 1;
-
+                FleeChance += 2;
+                //TODO Atacar Treinadores
             }
 
             var rand = new Random();
@@ -52,6 +54,26 @@ namespace Assets.Scripts.Domain.Humours
                 return Action.DoNothing;
             else
                 return Action.Flee;
+        }
+
+        public override Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters)
+        {
+            var rand = new Random();
+            if (action == Action.Attack)
+            {
+                if (rand.NextDouble() > 0.8)
+                    return EnemyMonsters[rand.Next(0, EnemyMonsters.Count)];
+                else
+                    return PlayerMonsters[rand.Next(0, PlayerMonsters.Count)];
+            }
+            if (action == Action.Buff)
+            {
+                if (rand.NextDouble() > 0.8)
+                    return PlayerMonsters[rand.Next(0, PlayerMonsters.Count)];
+                else
+                    return EnemyMonsters[rand.Next(0, EnemyMonsters.Count)];
+            }
+            return self;
         }
     }
 }
