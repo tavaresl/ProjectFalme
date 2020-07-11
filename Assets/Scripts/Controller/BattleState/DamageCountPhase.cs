@@ -9,6 +9,10 @@ namespace Assets.Scripts.Controller.BattleState
             throw new System.NotImplementedException();
         }
 
+        public void Finish()
+        {
+        }
+
         public bool IsOver()
         {
             throw new System.NotImplementedException();

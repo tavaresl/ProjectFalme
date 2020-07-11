@@ -9,13 +9,20 @@ namespace Assets.Scripts.Controller.BattleState
 
         public void Execute(BattleController battle)
         {
-            // Esperar player selecionar os monstros
-            throw new System.NotImplementedException();
+            Enemy = battle.EnemyCharacter;
+            Player = battle.PlayerCharacter;
+
+            Enemy.Draft();
+            Player.Draft();
+        }
+
+        public void Finish()
+        {
         }
 
         public bool IsOver()
         {
-            return Player.HasPickedSuggestion();
+            return Player?.HasDrafted ?? false;
         }
 
         public IBattlePhase GoToNext()

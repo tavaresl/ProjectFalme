@@ -5,7 +5,9 @@ namespace Assets.Scripts.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        public Player Player { get; set; }
+        public Player Player { get; private set; }
+        public bool HasDrafted { get; private set; }
+        public bool HasSuggested { get; private set; }
 
         public void Init(Player player)
         {
@@ -17,10 +19,14 @@ namespace Assets.Scripts.Controller
             //GET SUGGESTION
         }
 
-        public bool HasPickedSuggestion()
+        public void Draft()
         {
-            // Retorna se a pessoa já selecionou uma sugestão
-            return true;
+            // Solicitar para a pessoa escolher os pokemons que irá usar na batalha
+        }
+
+        public void PickSuggestion()
+        {
+            // Solicitar para a pessoa escolher ação a sugerir para os monstros em batalha
         }
 
         public void SendSuggestion()

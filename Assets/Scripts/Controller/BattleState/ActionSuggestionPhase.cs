@@ -4,14 +4,22 @@ namespace Assets.Scripts.Controller.BattleState
 {
     internal class ActionSuggestionPhase : IBattlePhase
     {
+        public PlayerController Player { get; private set; }
+
         public void Execute(BattleController battle)
         {
-            throw new System.NotImplementedException();
+            Player = battle.PlayerCharacter;
+
+            Player.PickSuggestion();
+        }
+
+        public void Finish()
+        {
         }
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            return Player.HasSuggested;
         }
 
         public IBattlePhase GoToNext()

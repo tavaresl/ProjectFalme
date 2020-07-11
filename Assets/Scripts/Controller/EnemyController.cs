@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public void Draft()
+    {
+        // Fazer com que o Enemy faça o draft dos monstros que irá usar em batalha
+    }
+
     // Start is called before the first frame update
     void Start()
     {

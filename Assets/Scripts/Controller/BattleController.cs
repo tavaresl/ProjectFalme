@@ -7,11 +7,12 @@ namespace Assets.Scripts.Controller
     public class BattleController : MonoBehaviour
     {
         public Battle Battle { get; set; }
-        [SerializeField]
-        private PlayerController PlayerCharacter;
-        [SerializeField]
-        private EnemyController EnemyCharacter;
 
+        [SerializeField]
+        public PlayerController PlayerCharacter { get; private set; }
+
+        [SerializeField]
+        public EnemyController EnemyCharacter { get; private set; }
         public IBattlePhase CurrentPhase { get; private set; }
 
         private void Start()
@@ -27,6 +28,7 @@ namespace Assets.Scripts.Controller
         {
             if (CurrentPhase.IsOver())
             {
+                CurrentPhase.Finish();
                 CurrentPhase = CurrentPhase.GoToNext();
                 CurrentPhase.Execute(this);
             }

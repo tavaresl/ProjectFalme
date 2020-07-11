@@ -8,8 +8,11 @@ namespace Assets.Scripts.Controller.BattleState
         
         public void Execute(BattleController battle)
         {
-            _battleIsOver = battle.IsOver() == null;
             throw new System.NotImplementedException();
+        }
+
+        public void Finish()
+        {
         }
 
         public bool IsOver()
