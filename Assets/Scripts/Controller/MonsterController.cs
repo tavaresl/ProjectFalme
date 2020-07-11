@@ -19,7 +19,7 @@ namespace Assets.Scripts.Controller
 
         [Range(0, 5)]
         public int speed;
-        public MonsterType type;
+        public IMonsterType type;
         public IHumour humour;
 
         public void Init(Monster monster)
@@ -39,8 +39,41 @@ namespace Assets.Scripts.Controller
 
         public void DoAction(Suggestion suggestion)
         {
-            var action = Monster.PickAction(suggestion);
+            Action action = Monster.PickAction(suggestion);
             //DO STUFF
+
+            switch(action)
+            {
+                case Action.Attack:
+                {
+                    //do stuff
+                    break;
+                } 
+                case Action.Defend:
+                {
+                    //do stuff
+                    break;
+                }
+                case Action.Buff: 
+                {
+                    //do stuff
+                    break;
+                }
+                case Action.DoNothing:
+                { 
+                    //do stuff
+                    break;
+                }
+                case Action.Flee:
+                {
+                     //do stuff
+                    break;
+                }
+                default: 
+                {
+                    break;
+                }
+            }
         }
     }
 }
