@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain
@@ -13,11 +14,24 @@ namespace Assets.Scripts.Domain
         public int Defense { get; set; }
         public int Speed { get; set; }
         public MonsterType Type { get; set; }
-        public Humour Humour { get; set; }
+        public IHumour Humour { get; set; }
 
-        public void PickAction(Suggestion suggestion)
+        public Action PickAction(Suggestion suggestion)
         {
-            // TODO: Implementar lógica de seleção de ação baseada no temperamento do monstro
+            return Humour.GetAction(suggestion);
+        }
+
+        public void TakeHit(int attackValue, MonsterType attackerType)
+        {
+            var damage = (attackValue - Defense) * GetDamageModifier(attackerType);
+            Health -= (int)Math.Floor(damage > 0 ? damage : 1);
+        }
+
+        public float GetDamageModifier(MonsterType attackerType)
+        {
+#warning TODO: Implentar buffs e calculo de vantagem
+            //Calcular beseado em tipo e buffs;
+            return 0f;
         }
     }
 

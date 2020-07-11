@@ -20,20 +20,27 @@ namespace Assets.Scripts.Controller
         [Range(0, 5)]
         public int speed;
         public MonsterType type;
-        public Humour humour;
+        public IHumour humour;
 
-        void Start()
+        public void Init(Monster monster)
         {
-            Monster = new Monster
-            {
-                Name = name,
-                Health = health,
-                Strength = strength,
-                Defense = defense,
-                Speed = speed,
-                Humour = humour,
-                Type = type
-            };
+            Monster = monster;
+            //Monster = new Monster
+            //{
+            //    Name = name,
+            //    Health = health,
+            //    Strength = strength,
+            //    Defense = defense,
+            //    Speed = speed,
+            //    Humour = humour,
+            //    Type = type
+            //};
+        }
+
+        public void DoAction(Suggestion suggestion)
+        {
+            var action = Monster.PickAction(suggestion);
+            //DO STUFF
         }
     }
 }

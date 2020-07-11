@@ -4,30 +4,33 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
-    public class Player : MonoBehaviour
+    public class Player
     {
-        public Monster PickedMonster { get; set; }
         public IList<Suggestion> Suggestions { get; set; }
-        public IList<Monster> Monsters { get; set; }
+        public IList<Monster> MonstersInCombat { get; set; }
+        public IList<Monster> AllMonsters { get; set; }
 
-        // public void SortMonsters()
-        // {
-        //     Monsters.OrderBy(m => m.Speed);
-        // }
+        public IList<Monster> GetRandomMonsters()
+        {
+            //Monster.GetRandomMonster
+            return new List<Monster>();
+        }
 
-        // public void PickMonster()
-        // {
-        //     PickedMonster = Monsters.LastOrDefault();
+        public void PickMonster()
+        {
+            //DRAFT
+        }
 
-        //     if (PickedMonster != null)
-        //     {
-        //         Monsters.Remove(PickedMonster);
-        //     }
-        // }
+        public void Init()
+        {
+
+        }
 
         public bool HasMonsterAvailable()
         {
-            return Monsters.Any() || PickedMonster != null; // Verificar necessidade de checar o monstro pickado
+            return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
         }
+
+
     }
 }
