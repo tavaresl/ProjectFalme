@@ -20,7 +20,7 @@ namespace Assets.Scripts.Controller.BattleState
                 monster.Do(
                     action,
                     !isEnemyMonster ? player.Player.MonstersInCombat : enemy.Enemy.MonstersInCombat,
-                    isEnemyMonster ? player.Player.MonstersInCombat : enemy.Enemy.MonstersInCombat,
+                    isEnemyMonster ? player.Player.MonstersInCombat : enemy.Enemy.MonstersInCombat
                 );
             }
 
