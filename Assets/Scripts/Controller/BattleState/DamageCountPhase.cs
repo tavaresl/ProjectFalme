@@ -7,7 +7,7 @@ namespace Assets.Scripts.Controller.BattleState
     {
         public void Execute(BattleController battle)
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void Finish()
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public IBattlePhase GoToNext()

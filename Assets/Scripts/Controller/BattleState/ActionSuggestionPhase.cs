@@ -7,14 +7,18 @@ namespace Assets.Scripts.Controller.BattleState
     {
         public PlayerController Player { get; private set; }
 
+        public SuggestionMenuController SuggestionMenu { get; private set; }
+
         public void Execute(BattleController battle)
         {
             Player = battle.PlayerCharacter;
+            SuggestionMenu = battle.SuggestionMenu;
+            SuggestionMenu.Show();
         }
 
         public void Finish()
         {
-            
+            SuggestionMenu.Hide();
         }
 
         public bool IsOver()

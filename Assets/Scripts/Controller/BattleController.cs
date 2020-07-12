@@ -23,6 +23,8 @@ namespace Assets.Scripts.Controller
 
         public IBattlePhase CurrentPhase { get; private set; }
 
+        public SuggestionMenuController SuggestionMenu { get; private set; }
+
         private void Start()
         {
             Battle = new Battle();

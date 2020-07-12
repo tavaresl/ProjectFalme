@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -54,5 +55,12 @@ namespace Assets.Scripts.Controller
             HasSuggested = false;
 
         }
+
+        public void RemoveDeadMonsters()
+        {
+            Player.RemoveDeadMonsters();
+            Monsters = Monsters.Where(m => Player.MonstersInCombat.Contains(m.Monster)).ToList();
+        }
+
     }
 }

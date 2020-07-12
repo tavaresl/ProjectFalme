@@ -45,6 +45,17 @@ namespace Assets.Scripts.Controller
             IsActive = false;
             PlayerController.PickSuggestion(Suggestion.Whatever);
         }
+
+        public void Show()
+        {
+            gameObject.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+        }
+
+        public void Hide()
+        {
+            gameObject.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+
+        }
     }
 }
 

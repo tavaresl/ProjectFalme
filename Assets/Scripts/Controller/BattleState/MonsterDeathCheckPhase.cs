@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -5,9 +7,13 @@ namespace Assets.Scripts.Controller.BattleState
 {
     internal class MonsterDeathCheckPhase : MonoBehaviour, IBattlePhase
     {
+        private bool _isOver;
+
         public void Execute(BattleController battle)
         {
-            throw new System.NotImplementedException();
+            battle.PlayerCharacter.RemoveDeadMonsters();
+            battle.EnemyCharacter.RemoveDeadMonsters();
+            _isOver = true;
         }
 
         public void Finish()
@@ -16,7 +22,7 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            return _isOver;
         }
 
         public IBattlePhase GoToNext()

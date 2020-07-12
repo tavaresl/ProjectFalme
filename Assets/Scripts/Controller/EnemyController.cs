@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Controller;
 using Assets.Scripts.Domain;
 using UnityEngine;
@@ -60,5 +61,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void RemoveDeadMonsters()
+    {
+        Enemy.RemoveDeadMonsters();
+        Monsters = Monsters.Where(m => Enemy.MonstersInCombat.Contains(m.Monster)).ToList();
     }
 }

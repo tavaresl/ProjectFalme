@@ -36,5 +36,10 @@ namespace Assets.Scripts.Domain
         {
             return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
         }
+
+        public void RemoveDeadMonsters()
+        {
+            MonstersInCombat = MonstersInCombat.Where(m => m.Health > 0).ToList();
+        }
     }
 }
