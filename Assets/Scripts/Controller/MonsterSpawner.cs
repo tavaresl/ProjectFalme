@@ -3,6 +3,7 @@ using Assets.Scripts.Domain;
 using Assets.Scripts.Domain.Humours;
 using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 namespace Assets.Scripts.Controller
@@ -11,6 +12,10 @@ namespace Assets.Scripts.Controller
     {
         [SerializeField]
         private GameObject _monsterPrefab;
+        [SerializeField]
+        private List<Sprite> MonsterSprites;
+        //Random é baseado no relógio, isso é necessário para evitar resultados repetidos.
+        private static Random rand = new Random();
 
         public GameObject Spawn()
         {
@@ -41,13 +46,13 @@ namespace Assets.Scripts.Controller
                 "Enel"
             };
 
-            int health = new Random().Next(0, 101);
-            int strength = new Random().Next(0, 11);
-            int defense = new Random().Next(0, 11);
-            int speed = new Random().Next(0, 5);
-            string name = names[new Random().Next(0, names.Count)];
-            Humour humour = humours[new Random().Next(0, humours.Count)];
-            IMonsterType type = monsterTypes[new Random().Next(0, monsterTypes.Count)];
+            int health = rand.Next(0, 101);
+            int strength = rand.Next(0, 11);
+            int defense = rand.Next(0, 11);
+            int speed = rand.Next(0, 5);
+            string name = names[rand.Next(0, names.Count)];
+            Humour humour = humours[rand.Next(0, humours.Count)];
+            IMonsterType type = monsterTypes[rand.Next(0, monsterTypes.Count)];
 
             Monster monster = new Monster
             {
@@ -61,6 +66,7 @@ namespace Assets.Scripts.Controller
             };
 
             var prefabInstance = Instantiate(_monsterPrefab);
+            prefabInstance.GetComponent<Image>().sprite = MonsterSprites[rand.Next(0, MonsterSprites.Count)];
             prefabInstance.GetComponent<MonsterController>().Init(monster);
 
             return prefabInstance;

@@ -48,7 +48,11 @@ namespace Assets.Scripts.Controller
 
         public void SortAttackers()
         {
-            AttackOrder = new List<IList<MonsterController>> { PlayerCharacter.Monsters, EnemyCharacter.Monsters}
+            AttackOrder = new List<IList<MonsterController>>
+            {
+                PlayerCharacter.Monsters.Select(m => m.GetComponent<MonsterController>()).ToList(),
+                EnemyCharacter.Monsters.Select(m => m.GetComponent<MonsterController>()).ToList()
+            }
                 .SelectMany(m => m)
                 .OrderBy(m => m.Monster.Speed)
                 .Reverse()
