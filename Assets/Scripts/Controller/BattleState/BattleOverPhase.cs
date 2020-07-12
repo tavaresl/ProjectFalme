@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -5,9 +6,12 @@ namespace Assets.Scripts.Controller.BattleState
 {
     internal class BattleOverPhase : IBattlePhase
     {
+        public BattleController BattleController { get; private set; }
+
         public void Execute(BattleController battle)
         {
-            //TO DO definir acoes pos batalha
+            BattleController = battle;
+            BattleController.ShowGameOverPanel();
         }
 
         public void Finish()
@@ -16,7 +20,7 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            return true;
+            return BattleController.ShouldReload;
         }
 
         public IBattlePhase GoToNext()

@@ -7,7 +7,7 @@ using Assets.Scripts.Domain;
 using Assets.Scripts.Helpers;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, ICharacter
 {
     
     public Suggestion SuggestionObj { get; private set; }
@@ -37,6 +37,8 @@ public class EnemyController : MonoBehaviour
             Monsters.Add(monster);
 
             monster.transform.localPosition = positions[counter];
+            monster.transform.localScale = new Vector3(.8f, .8f);
+
             counter++;
         }
 
@@ -71,5 +73,10 @@ public class EnemyController : MonoBehaviour
         Enemy.RemoveDeadMonsters();
         Monsters = Monsters.Where(m => Enemy.MonstersInCombat.Contains(m.GetComponent<MonsterController>().Monster)).ToList();
         Debug.Log("Currently Alive Enemy: " + Monsters.Count);
+    }
+
+    public bool CanFight()
+    {
+        return Enemy.CanKeepFighting();
     }
 }
