@@ -28,12 +28,18 @@ namespace Assets.Scripts.Domain
 
         public void Init()
         {
-
+            AllMonsters = new List<Monster>();
+            MonstersInCombat = new List<Monster>();
         }
 
         public bool CanKeepFighting()
         {
             return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
+        }
+
+        public void RemoveDeadMonsters()
+        {
+            MonstersInCombat = MonstersInCombat.Where(m => m.Health > 0).ToList();
         }
     }
 }

@@ -1,8 +1,9 @@
 using Assets.Scripts.Domain;
+using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class MonsterSortPhase : IBattlePhase
+    internal class MonsterSortPhase : MonoBehaviour, IBattlePhase
     {
         public void Execute(BattleController battle)
         {
@@ -15,7 +16,8 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            // Resolves as soon as it starts
+            return true;
         }
 
         public IBattlePhase GoToNext()

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Domain;
 using UnityEngine;
 
@@ -28,7 +30,7 @@ namespace Assets.Scripts.Controller
             }
         }
 
-        public void Update()
+       public void Update()
         {
             //GET SUGGESTION
         }
@@ -38,15 +40,27 @@ namespace Assets.Scripts.Controller
             Player.PickMonsters();
         }
 
-        public void PickSuggestion()
+        public void PickSuggestion(Suggestion suggestion)
         {
-            // Solicitar para a pessoa escolher ação a sugerir para os monstros em batalha
+            Suggestion = suggestion;
+            HasSuggested = true;
         }
 
         public void SendSuggestion()
         {
-            //Player List Suggestions
-            //Mandar aos monstros
+            foreach (MonsterController monster in Monsters)
+           {
+               monster.PickAction(Suggestion);
+           } 
+            HasSuggested = false;
+
         }
+
+        public void RemoveDeadMonsters()
+        {
+            Player.RemoveDeadMonsters();
+            Monsters = Monsters.Where(m => Player.MonstersInCombat.Contains(m.Monster)).ToList();
+        }
+
     }
 }

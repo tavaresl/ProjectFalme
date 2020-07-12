@@ -8,5 +8,6 @@ namespace Assets.Scripts.Controller.BattleState
         void Finish();
         bool IsOver();
         IBattlePhase GoToNext();
+       // void getInput();
     }
 }

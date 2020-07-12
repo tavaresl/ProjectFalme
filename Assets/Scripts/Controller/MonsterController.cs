@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain;
+using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
 
 namespace Assets.Scripts.Controller

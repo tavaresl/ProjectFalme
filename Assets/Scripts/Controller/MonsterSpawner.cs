@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Domain;
 using Assets.Scripts.Domain.Humours;
+using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
 using Random = System.Random;
 

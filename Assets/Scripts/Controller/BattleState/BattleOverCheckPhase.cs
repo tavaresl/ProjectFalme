@@ -5,10 +5,17 @@ namespace Assets.Scripts.Controller.BattleState
     internal class BattleOverCheckPhase : IBattlePhase
     {
         private bool _battleIsOver = false;
+        private bool _phaseIsOver = false;
         
         public void Execute(BattleController battle)
         {
-            throw new System.NotImplementedException();
+            if (battle.PlayerCharacter.Player.CanKeepFighting() || battle.EnemyCharacter.Enemy.CanKeepFighting())
+            {
+                _battleIsOver = true;
+            }
+
+            _phaseIsOver = true;
+
         }
 
         public void Finish()
@@ -17,7 +24,7 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            return _phaseIsOver;
         }
 
         public IBattlePhase GoToNext()

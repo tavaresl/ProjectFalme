@@ -10,7 +10,9 @@ namespace Assets.Scripts.Domain
 
         public void Init()
         {
+            Player = new Player();
             Player.Init();
+            Enemy = new Player();
             Enemy.Init();
             TurnCounter = 0;
         }
