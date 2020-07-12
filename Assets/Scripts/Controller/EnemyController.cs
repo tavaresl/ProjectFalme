@@ -69,6 +69,13 @@ public class EnemyController : MonoBehaviour
     public void RemoveDeadMonsters()
     {
         Enemy.RemoveDeadMonsters();
+        foreach (GameObject monsterObject in Monsters)
+        {
+            if (!Enemy.MonstersInCombat.Contains(monsterObject.GetComponent<MonsterController>().Monster))
+            {
+                Destroy(monsterObject);
+            }
+        }
         Monsters = Monsters.Where(m => Enemy.MonstersInCombat.Contains(m.GetComponent<MonsterController>().Monster)).ToList();
         Debug.Log("Currently Alive Enemy: " + Monsters.Count);
     }

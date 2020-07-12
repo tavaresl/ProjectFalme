@@ -88,6 +88,13 @@ namespace Assets.Scripts.Controller
         public void RemoveDeadMonsters()
         {
             Player.RemoveDeadMonsters();
+            foreach (GameObject monsterObject in Monsters)
+            {
+                if(!Player.MonstersInCombat.Contains(monsterObject.GetComponent<MonsterController>().Monster))
+                {
+                    Destroy(monsterObject);
+                }
+            }
             Monsters = Monsters.Where(m => Player.MonstersInCombat.Contains(m.GetComponent<MonsterController>().Monster)).ToList();
             Debug.Log("Currently Alive Player: " + Monsters.Count);
         }
