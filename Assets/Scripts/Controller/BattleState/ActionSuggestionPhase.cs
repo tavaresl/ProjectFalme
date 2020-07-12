@@ -1,8 +1,9 @@
 using Assets.Scripts.Domain;
+using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class ActionSuggestionPhase : IBattlePhase
+    internal class ActionSuggestionPhase : MonoBehaviour, IBattlePhase
     {
         public PlayerController Player { get; private set; }
 
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Controller.BattleState
 
         public void Finish()
         {
+            
         }
 
         public bool IsOver()

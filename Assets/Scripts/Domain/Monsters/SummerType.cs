@@ -1,10 +1,10 @@
-namespace Assets.Scripts.Domain
+namespace Assets.Scripts.Domain.Monsters
 {
-    public class WinterType : IMonsterType
+    public class SummerType : IMonsterType
     {
 
         private const int ValueVulnerability = 3;
-        private IMonsterType typeVulnerability = new FallType();
+        private IMonsterType typeVulnerability = new SpringType();
 
         public int AddVulnerability(IMonsterType attackerType)
         {
@@ -13,7 +13,7 @@ namespace Assets.Scripts.Domain
             }else{
                 return 1;
             }
-            
         }
     }
 }
+

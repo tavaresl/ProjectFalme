@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Domain;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Controller
             }
         }
 
-        public void Update()
+       public void Update()
         {
             //GET SUGGESTION
         }
@@ -40,13 +41,19 @@ namespace Assets.Scripts.Controller
 
         public void PickSuggestion()
         {
-            // Solicitar para a pessoa escolher ação a sugerir para os monstros em batalha
+            
+            HasSuggested = true;
+            // Solicitar para a pessoa escolher aï¿½ï¿½o a sugerir para os monstros em batalha
         }
 
         public void SendSuggestion()
         {
-            //Player List Suggestions
-            //Mandar aos monstros
+            foreach (MonsterController monster in Monsters)
+           {
+               monster.PickAction(Suggestion);
+           } 
+            HasSuggested = false;
+
         }
     }
 }

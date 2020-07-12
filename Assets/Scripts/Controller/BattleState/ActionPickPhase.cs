@@ -1,8 +1,9 @@
 using Assets.Scripts.Domain;
+using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class ActionPickPhase : IBattlePhase
+    internal class ActionPickPhase  : MonoBehaviour, IBattlePhase 
     {
         private bool _isOver = false;
 

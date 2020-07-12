@@ -26,7 +26,7 @@ namespace Assets.Scripts.Controller
         private void Start()
         {
             Battle.Init();
-            PlayerCharacter.Init(Battle.Player);
+            PlayerCharacter.Init(MonsterSpawner, Battle.Player);
             EnemyCharacter.Init(MonsterSpawner, Battle.Enemy);
 
             CurrentPhase = new DraftPhase();

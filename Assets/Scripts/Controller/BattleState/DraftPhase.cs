@@ -1,8 +1,9 @@
 using Assets.Scripts.Domain;
+using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class DraftPhase : IBattlePhase
+    internal class DraftPhase : MonoBehaviour, IBattlePhase
     {
         public PlayerController Player { get; private set; }
         public EnemyController Enemy { get; private set; }

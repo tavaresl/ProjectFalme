@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.Domain
+namespace Assets.Scripts.Domain.Monsters
 {
     public interface IMonsterType
     {

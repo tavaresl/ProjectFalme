@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain

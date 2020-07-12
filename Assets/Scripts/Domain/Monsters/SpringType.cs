@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Domain
+namespace Assets.Scripts.Domain.Monsters
 {
     public class SpringType : IMonsterType
     {
