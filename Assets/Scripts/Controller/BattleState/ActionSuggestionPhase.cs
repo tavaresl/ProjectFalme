@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class ActionSuggestionPhase : MonoBehaviour, IBattlePhase
+    internal class ActionSuggestionPhase : IBattlePhase
     {
         public PlayerController Player { get; private set; }
 

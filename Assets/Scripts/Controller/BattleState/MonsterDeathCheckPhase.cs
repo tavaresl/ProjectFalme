@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class MonsterDeathCheckPhase : MonoBehaviour, IBattlePhase
+    internal class MonsterDeathCheckPhase : IBattlePhase
     {
         public void Execute(BattleController battle)
         {

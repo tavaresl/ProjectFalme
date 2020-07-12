@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class ActionPickPhase  : MonoBehaviour, IBattlePhase 
+    internal class ActionPickPhase  : IBattlePhase 
     {
         private bool _isOver = false;
 

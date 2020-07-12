@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class DamageCountPhase : MonoBehaviour, IBattlePhase
+    internal class DamageCountPhase : IBattlePhase
     {
         public void Execute(BattleController battle)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class DraftPhase : MonoBehaviour, IBattlePhase
+    internal class DraftPhase : IBattlePhase
     {
         public PlayerController Player { get; private set; }
         public EnemyController Enemy { get; private set; }
