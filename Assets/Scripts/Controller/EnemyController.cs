@@ -4,27 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Controller;
 using Assets.Scripts.Domain;
+using Assets.Scripts.Helpers;
 using UnityEngine;
-using Random = System.Random;
 
 public class EnemyController : MonoBehaviour
 {
     
     public Suggestion SuggestionObj { get; private set; }
-    public IList<MonsterController> Monsters { get; private set; }
+    public IList<GameObject> Monsters { get; private set; }
     public MonsterSpawner MonsterSpawner { get; private set; }
     public Player Enemy { get; private set; }
 
     public void Draft()
     {
-        IList<MonsterController> monsters = new List<MonsterController>();
+        Monsters = new List<GameObject>();
+
+        List<Vector3> positions = new List<Vector3>()
+        {
+            new Vector3(0f, -40f, 0f),
+            new Vector3(30f, -30f, 0f),
+            new Vector3(40f, 0f, 0f)
+        };
+        int counter = 0;
+
 
         for (int i = 0; i < 3; i++)
         {
-            monsters.Add(MonsterSpawner.Spawn().GetComponent<MonsterController>());
+
+            GameObject monster = MonsterSpawner.Spawn();
+            monster.transform.SetParent(transform);
+            Enemy.ChooseMonster(monster.GetComponent<MonsterController>().Monster);
+            Monsters.Add(monster);
+
+            monster.transform.localPosition = positions[counter];
+            counter++;
         }
 
-        Monsters = monsters;
+        Enemy.PickMonsters();
     }
 
     public void Init(MonsterSpawner monsterSpawner, Player enemy)
@@ -36,7 +52,7 @@ public class EnemyController : MonoBehaviour
     public void PickSuggestion()
     {
         var values = new List<object>{Enum.GetValues(typeof(Suggestion))};
-        int position = new Random().Next(0, values.Count);
+        int position = RNG.GetRandom().Next(0, values.Count);
         SuggestionObj =  (Suggestion)values[position];
         
         // Solicitar para a pessoa escolher a��o a sugerir para os monstros em batalha
@@ -44,28 +60,16 @@ public class EnemyController : MonoBehaviour
 
     public void SendSuggestion()
     {
-        foreach (MonsterController monster in Monsters)
+        foreach (MonsterController monster in Monsters.Select(m => m.GetComponent<MonsterController>()))
         {
             monster.PickAction(SuggestionObj);
         }
-  
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void RemoveDeadMonsters()
     {
         Enemy.RemoveDeadMonsters();
-        Monsters = Monsters.Where(m => Enemy.MonstersInCombat.Contains(m.Monster)).ToList();
+        Monsters = Monsters.Where(m => Enemy.MonstersInCombat.Contains(m.GetComponent<MonsterController>().Monster)).ToList();
+        Debug.Log("Currently Alive Enemy: " + Monsters.Count);
     }
 }

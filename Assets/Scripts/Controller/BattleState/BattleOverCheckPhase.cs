@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using System.Linq;
 
 namespace Assets.Scripts.Controller.BattleState
 {
@@ -9,10 +10,21 @@ namespace Assets.Scripts.Controller.BattleState
         
         public void Execute(BattleController battle)
         {
-            if (battle.PlayerCharacter.Player.CanKeepFighting() || battle.EnemyCharacter.Enemy.CanKeepFighting())
+            if (!battle.PlayerCharacter.Player.CanKeepFighting() || !battle.EnemyCharacter.Enemy.CanKeepFighting())
             {
                 _battleIsOver = true;
             }
+
+            foreach (Monster monster in battle.PlayerCharacter.Player.MonstersInCombat)
+            {
+                monster.StartNewTurn();
+            }
+
+            foreach (Monster monster in battle.EnemyCharacter.Enemy.MonstersInCombat)
+            {
+                monster.StartNewTurn();
+            }
+            battle.PlayerCharacter.StartNewTurn();
 
             _phaseIsOver = true;
 

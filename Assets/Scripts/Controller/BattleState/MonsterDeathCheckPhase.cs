@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class MonsterDeathCheckPhase : MonoBehaviour, IBattlePhase
+    internal class MonsterDeathCheckPhase : IBattlePhase
     {
         private bool _isOver;
 

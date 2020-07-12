@@ -34,12 +34,12 @@ namespace Assets.Scripts.Domain
 
         public bool CanKeepFighting()
         {
-            return MonstersInCombat.Any(m => m.Health > 0); // Verificar necessidade de checar o monstro pickado
+            return MonstersInCombat.Any(m => m.CanFight()); // Verificar necessidade de checar o monstro pickado
         }
 
         public void RemoveDeadMonsters()
         {
-            MonstersInCombat = MonstersInCombat.Where(m => m.Health > 0).ToList();
+            MonstersInCombat = MonstersInCombat.Where(m => m.CanFight()).ToList();
         }
     }
 }

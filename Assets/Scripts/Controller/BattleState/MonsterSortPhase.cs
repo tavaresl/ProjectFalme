@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class MonsterSortPhase : MonoBehaviour, IBattlePhase
+    internal class MonsterSortPhase : IBattlePhase
     {
         public void Execute(BattleController battle)
         {

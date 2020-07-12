@@ -14,6 +14,11 @@ namespace Assets.Scripts.Controller
         [SerializeField]
         PlayerController PlayerController;
 
+        public void Enable()
+        {
+            IsActive = true;
+        }
+
         public void OnClickAttack()
         {
             if (!IsActive)
@@ -48,13 +53,12 @@ namespace Assets.Scripts.Controller
 
         public void Show()
         {
-            gameObject.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
+            gameObject.GetComponent<CanvasGroup>().alpha = 1f;
         }
 
         public void Hide()
         {
-            gameObject.GetComponent<RectTransform>().position = new Vector3(0, 0, 0);
-
+            gameObject.GetComponent<CanvasGroup>().alpha = 0f;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -40,7 +41,7 @@ namespace Assets.Scripts.Domain.Humours
 
             }
 
-            var rand = new Random();
+            var rand = RNG.GetRandom();
             var roll = rand.Next(0, AttackChance + DefendChance + BuffChance + DoNothingChance + FleeChance);
             if (roll < AttackChance)
                 return Action.Attack;

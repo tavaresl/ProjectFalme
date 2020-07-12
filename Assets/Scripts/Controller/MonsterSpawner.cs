@@ -2,6 +2,7 @@
 using Assets.Scripts.Domain;
 using Assets.Scripts.Domain.Humours;
 using Assets.Scripts.Domain.Monsters;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Controller
         [SerializeField]
         private List<Sprite> MonsterSprites;
         //Random é baseado no relógio, isso é necessário para evitar resultados repetidos.
-        private static Random rand = new Random();
+        private static Random rand = RNG.GetRandom();
 
         public GameObject Spawn()
         {
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Controller
                 "Enel"
             };
 
-            int health = rand.Next(0, 101);
+            int health = rand.Next(5, 11);
             int strength = rand.Next(0, 11);
             int defense = rand.Next(0, 11);
             int speed = rand.Next(0, 5);
@@ -62,7 +63,8 @@ namespace Assets.Scripts.Controller
                 Speed = speed,
                 Type = type,
                 Humour = humour,
-                Name = name
+                Name = name,
+                HasFled = false
             };
 
             var prefabInstance = Instantiate(_monsterPrefab);

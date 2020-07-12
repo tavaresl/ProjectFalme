@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controller.BattleState
 {
-    internal class ActionSuggestionPhase : MonoBehaviour, IBattlePhase
+    internal class ActionSuggestionPhase : IBattlePhase
     {
         public PlayerController Player { get; private set; }
 
@@ -14,6 +14,7 @@ namespace Assets.Scripts.Controller.BattleState
             Player = battle.PlayerCharacter;
             SuggestionMenu = battle.SuggestionMenu;
             SuggestionMenu.Show();
+            SuggestionMenu.Enable();
         }
 
         public void Finish()
@@ -23,6 +24,8 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
+            if (Player.HasSuggested)
+                Debug.Log("Player Has Suggested: " + Player.Suggestion.ToString());
             return Player.HasSuggested;
         }
 

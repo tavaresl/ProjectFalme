@@ -31,9 +31,9 @@ namespace Assets.Scripts.Controller
             }
         }
 
-       public void Update()
+        public void StartNewTurn()
         {
-            //GET SUGGESTION
+            HasSuggested = false;
         }
 
         public void Draft()
@@ -47,43 +47,49 @@ namespace Assets.Scripts.Controller
                 new Vector3(-40f, 0f, 0f)
             };
 
+            var selectedMonsters = new List<GameObject>();
+
             foreach(GameObject monster in Monsters)
             {
                 MonsterController monsterController = monster.GetComponent<MonsterController>();
                 if (!Player.MonstersInCombat.Contains(monsterController.Monster))
                 {
 
-                    // Monsters.Remove(monster);
+                    monsterController.Monster.Flee();
                     Destroy(monster);
                 }
                 else
                 {
+                    selectedMonsters.Add(monster);
                     monster.transform.localPosition = positions[counter];
                     counter++;
                 }
+                Monsters = selectedMonsters;
             }
         }
 
         public void PickSuggestion(Suggestion suggestion)
         {
+            Debug.Log("Suggestion Get: " + suggestion.ToString());
             Suggestion = suggestion;
             HasSuggested = true;
         }
 
-        public void SendSuggestion()
-        {
-           foreach (MonsterController monster in Monsters.Select(m => m.GetComponent<MonsterController>()))
-           {
-               monster.PickAction(Suggestion);
-           } 
-            HasSuggested = false;
+        //public void SendSuggestion()
+        //{
+        //   foreach (MonsterController monster in Monsters.Select(m => m.GetComponent<MonsterController>()))
+        //   {
+        //       monster.PickAction(Suggestion);
+        //   } 
+        //    HasSuggested = false;
 
-        }
+        //}
 
         public void RemoveDeadMonsters()
         {
             Player.RemoveDeadMonsters();
-            Monsters = Monsters.Where(m => Player.MonstersInCombat.Contains(m.Monster)).ToList();
+            Monsters = Monsters.Where(m => Player.MonstersInCombat.Contains(m.GetComponent<MonsterController>().Monster)).ToList();
+            Debug.Log("Currently Alive Player: " + Monsters.Count);
         }
 
     }

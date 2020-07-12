@@ -1,3 +1,4 @@
+using Assets.Scripts.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace Assets.Scripts.Domain
         public abstract Action GetAction(Suggestion suggestion, float currentHP);
         public virtual Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters)
         {
-            var rand = new Random();
+            var rand = RNG.GetRandom();
             if (action == Action.Attack)
             {
                 return EnemyMonsters[rand.Next(0, EnemyMonsters.Count)];
