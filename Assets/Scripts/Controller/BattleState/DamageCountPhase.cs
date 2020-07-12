@@ -7,7 +7,15 @@ namespace Assets.Scripts.Controller.BattleState
     {
         public void Execute(BattleController battle)
         {
+            foreach (GameObject monsterGameObject in battle.PlayerCharacter.Monsters)
+            {
+                monsterGameObject.GetComponent<MonsterController>().SetHealth();
+            }
 
+            foreach (GameObject monsterGameObject in battle.EnemyCharacter.Monsters)
+            {
+                monsterGameObject.GetComponent<MonsterController>().SetHealth();
+            }
         }
 
         public void Finish()

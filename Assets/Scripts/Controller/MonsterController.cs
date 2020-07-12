@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Domain;
 using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
+using UnityEngine.UI;
+using Action = Assets.Scripts.Domain.Action;
 
 namespace Assets.Scripts.Controller
 {
@@ -24,6 +27,9 @@ namespace Assets.Scripts.Controller
         //public int speed;
         //public IMonsterType type;
         //public Humour humour;
+
+        [SerializeField]
+        public Text HealthBar;
 
         public void Init(Monster monster)
         {
@@ -49,6 +55,11 @@ namespace Assets.Scripts.Controller
                 else if (action == Action.Flee)
                     target.Flee();
             }
+        }
+
+        public void SetHealth()
+        {
+            HealthBar.text = $"{Monster.Health}/{Monster.MaxHealth}";
         }
     }
 }

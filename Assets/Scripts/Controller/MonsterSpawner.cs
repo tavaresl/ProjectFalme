@@ -59,6 +59,7 @@ namespace Assets.Scripts.Controller
             {
                 Strength = strength,
                 Defense = defense,
+                MaxHealth = health,
                 Health = health,
                 Speed = speed,
                 Type = type,

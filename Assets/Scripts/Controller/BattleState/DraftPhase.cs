@@ -15,6 +15,9 @@ namespace Assets.Scripts.Controller.BattleState
 
             Enemy.Draft();
             Player.Draft();
+
+            Player.UpdateMonstersHealthBar();
+            Enemy.UpdateMonstersHealthBar();
         }
 
         public void Finish()

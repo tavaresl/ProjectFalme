@@ -104,5 +104,13 @@ namespace Assets.Scripts.Controller
         {
             return Player.CanKeepFighting();
         }
+
+        public void UpdateMonstersHealthBar()
+        {
+            foreach (GameObject monsterGO in Monsters)
+            {
+                monsterGO.GetComponent<MonsterController>().SetHealth();
+            }
+        }
     }
 }

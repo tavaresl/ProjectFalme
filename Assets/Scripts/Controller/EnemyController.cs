@@ -86,4 +86,12 @@ public class EnemyController : MonoBehaviour, ICharacter
     {
         return Enemy.CanKeepFighting();
     }
+
+    public void UpdateMonstersHealthBar()
+    {
+        foreach (GameObject monsterGO in Monsters)
+        {
+            monsterGO.GetComponent<MonsterController>().SetHealth();
+        }
+    }
 }
