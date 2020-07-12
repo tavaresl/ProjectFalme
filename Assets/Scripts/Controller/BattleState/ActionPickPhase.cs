@@ -14,9 +14,14 @@ namespace Assets.Scripts.Controller.BattleState
 
             foreach (var monster in battle.AttackOrder)
             {
+                bool isEnemyMonster = enemy.Enemy.MonstersInCombat.Contains(monster.Monster);
                 Action action = monster.PickAction(player.Suggestion);
                 Debug.Log($"Player Suggested: {player.Suggestion} Monster {monster.name} did: {action.ToString()}");
-                monster.Do(action, player.Player.MonstersInCombat, enemy.Enemy.MonstersInCombat);
+                monster.Do(
+                    action,
+                    !isEnemyMonster ? player.Player.MonstersInCombat : enemy.Enemy.MonstersInCombat,
+                    isEnemyMonster ? player.Player.MonstersInCombat : enemy.Enemy.MonstersInCombat,
+                );
             }
 
             _isOver = true;
