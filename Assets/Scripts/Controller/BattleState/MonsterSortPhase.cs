@@ -16,7 +16,8 @@ namespace Assets.Scripts.Controller.BattleState
 
         public bool IsOver()
         {
-            throw new System.NotImplementedException();
+            // Resolves as soon as it starts
+            return true;
         }
 
         public IBattlePhase GoToNext()

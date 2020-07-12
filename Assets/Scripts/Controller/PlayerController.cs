@@ -39,11 +39,10 @@ namespace Assets.Scripts.Controller
             Player.PickMonsters();
         }
 
-        public void PickSuggestion()
+        public void PickSuggestion(Suggestion suggestion)
         {
-            
+            Suggestion = suggestion;
             HasSuggested = true;
-            // Solicitar para a pessoa escolher a��o a sugerir para os monstros em batalha
         }
 
         public void SendSuggestion()

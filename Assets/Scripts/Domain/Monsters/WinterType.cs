@@ -4,9 +4,9 @@ namespace Assets.Scripts.Domain.Monsters
     {
 
         private const int ValueVulnerability = 3;
-        private IMonsterType typeVulnerability = new FallType();
+        private MonsterType typeVulnerability = MonsterType.Fall;
 
-        public int AddVulnerability(IMonsterType attackerType)
+        public int AddVulnerability(MonsterType attackerType)
         {
             if(attackerType.Equals(typeVulnerability)){
                 return ValueVulnerability;
@@ -15,5 +15,6 @@ namespace Assets.Scripts.Domain.Monsters
             }
             
         }
+        public MonsterType GetMonsterType() { return MonsterType.Winter; }
     }
 }

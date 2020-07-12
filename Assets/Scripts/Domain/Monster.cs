@@ -30,7 +30,7 @@ namespace Assets.Scripts.Domain
             Health -= (int)Math.Floor(damage > 0 ? damage : 1);
         }
 
-        public float GetDamageModifier(IMonsterType attackerType) => this.Type.AddVulnerability(attackerType);
+        public float GetDamageModifier(IMonsterType attacker) => this.Type.AddVulnerability(attacker.GetMonsterType());
     }
 
    /* public enum MonsterType

@@ -10,8 +10,6 @@ namespace Assets.Scripts.Controller.BattleState
         public void Execute(BattleController battle)
         {
             Player = battle.PlayerCharacter;
-
-            Player.PickSuggestion();
         }
 
         public void Finish()

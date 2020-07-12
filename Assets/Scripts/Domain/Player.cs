@@ -28,7 +28,8 @@ namespace Assets.Scripts.Domain
 
         public void Init()
         {
-
+            AllMonsters = new List<Monster>();
+            MonstersInCombat = new List<Monster>();
         }
 
         public bool CanKeepFighting()

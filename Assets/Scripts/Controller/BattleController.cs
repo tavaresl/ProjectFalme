@@ -13,18 +13,19 @@ namespace Assets.Scripts.Controller
         public IList<MonsterController> AttackOrder { get; private set; }
 
         [SerializeField]
-        public PlayerController PlayerCharacter { get; private set; }
+        public PlayerController PlayerCharacter;
 
         [SerializeField]
-        public EnemyController EnemyCharacter { get; private set; }
+        public EnemyController EnemyCharacter;
 
         [SerializeField]
-        public MonsterSpawner MonsterSpawner { get; private set; }
+        public MonsterSpawner MonsterSpawner;
 
         public IBattlePhase CurrentPhase { get; private set; }
 
         private void Start()
         {
+            Battle = new Battle();
             Battle.Init();
             PlayerCharacter.Init(MonsterSpawner, Battle.Player);
             EnemyCharacter.Init(MonsterSpawner, Battle.Enemy);
@@ -35,7 +36,7 @@ namespace Assets.Scripts.Controller
 
         void Update()
         {
-            if (CurrentPhase.IsOver())
+            if (CurrentPhase != null && CurrentPhase.IsOver())
             {
                 CurrentPhase.Finish();
                 CurrentPhase = CurrentPhase.GoToNext();
