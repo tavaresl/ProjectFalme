@@ -34,13 +34,17 @@ namespace Assets.Scripts.Controller
         [SerializeField]
         public GameObject GameOverPanel;
 
+        [SerializeField]
+        private MonsterStatsPanelController StatsPanelController;
+
         private void Start()
         {
             ShouldReload = false;
             Battle = new Battle();
             Battle.Init();
-            PlayerCharacter.Init(MonsterSpawner, Battle.Player);
-            EnemyCharacter.Init(MonsterSpawner, Battle.Enemy);
+            PlayerCharacter.Init(MonsterSpawner, Battle.Player, StatsPanelController);
+            EnemyCharacter.Init(MonsterSpawner, Battle.Enemy, StatsPanelController);
+            StatsPanelController.gameObject.SetActive(false);
 
             CurrentPhase = new DraftPhase();
             CurrentPhase.Execute(this);

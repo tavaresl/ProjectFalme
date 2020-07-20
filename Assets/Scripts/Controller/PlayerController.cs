@@ -16,7 +16,7 @@ namespace Assets.Scripts.Controller
         public bool HasDrafted => Player.FinishedDraft();
         public bool HasSuggested { get; private set; }
 
-        public void Init(MonsterSpawner monsterSpawner, Player player)
+        public void Init(MonsterSpawner monsterSpawner, Player player, MonsterStatsPanelController statsPanelController)
         {
             Player = player;
             Monsters = new List<GameObject>();
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Controller
 
             for (int i = 0; i < 6; i++)
             {
-                GameObject monster = MonsterSpawner.Spawn();
+                GameObject monster = MonsterSpawner.Spawn(statsPanelController);
                 monster.transform.SetParent(transform);
                 Player.ChooseMonster(monster.GetComponent<MonsterController>().Monster);
                 Monsters.Add(monster);

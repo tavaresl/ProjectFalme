@@ -4,12 +4,13 @@ using System.Linq;
 using Assets.Scripts.Domain;
 using Assets.Scripts.Domain.Monsters;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Action = Assets.Scripts.Domain.Action;
 
 namespace Assets.Scripts.Controller
 {
-    public class MonsterController : MonoBehaviour
+    public class MonsterController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public Monster Monster { get; set; }
         //public new string name;
@@ -30,10 +31,12 @@ namespace Assets.Scripts.Controller
 
         [SerializeField]
         public Text HealthBar;
+        private MonsterStatsPanelController StatsPanelController;
 
-        public void Init(Monster monster)
+        public void Init(Monster monster, MonsterStatsPanelController statsPanelController)
         {
             Monster = monster;
+            StatsPanelController = statsPanelController;
         }
 
         public Action PickAction(Suggestion suggestion)
@@ -60,6 +63,17 @@ namespace Assets.Scripts.Controller
         public void SetHealth()
         {
             HealthBar.text = $"{Monster.Health}/{Monster.MaxHealth}";
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            StatsPanelController.Update(Monster);
+            StatsPanelController.gameObject.SetActive(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            StatsPanelController.gameObject.SetActive(false);
         }
     }
 }

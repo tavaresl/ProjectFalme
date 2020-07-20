@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Assets.Scripts.Domain.Monsters
 {
     public class WinterType : IMonsterType
@@ -16,5 +18,10 @@ namespace Assets.Scripts.Domain.Monsters
             
         }
         public MonsterType GetMonsterType() { return MonsterType.Winter; }
+
+        public Color GetColor()
+        {
+            return new Color(0.4666f, 0.8862f, 0.8549f);
+        }
     }
 }

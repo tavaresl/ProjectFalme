@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Domain.Monsters
 {
@@ -7,5 +8,7 @@ namespace Assets.Scripts.Domain.Monsters
         int AddVulnerability(MonsterType attackerType);
 
         MonsterType GetMonsterType();
+
+        Color GetColor();
     }
 }

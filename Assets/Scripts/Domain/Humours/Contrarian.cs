@@ -8,6 +8,8 @@ namespace Assets.Scripts.Domain.Humours
 
     public class Contrarian : Humour
     {
+        public override string Name => "Contrarian";
+
         Suggestion PreviousSuggestion { get; set; }
         public override Action GetAction(Suggestion suggestion, float currentHP)
         {

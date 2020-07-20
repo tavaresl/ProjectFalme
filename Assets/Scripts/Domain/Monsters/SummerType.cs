@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Assets.Scripts.Domain.Monsters
 {
     public class SummerType : IMonsterType
@@ -15,6 +17,11 @@ namespace Assets.Scripts.Domain.Monsters
             }
         }
         public MonsterType GetMonsterType() { return MonsterType.Summer; }
+
+        public Color GetColor()
+        {
+            return new Color(0.8862f, 0.7058f, 0.1372f);
+        }
     }
 }
 

@@ -7,6 +7,8 @@ namespace Assets.Scripts.Domain.Humours
 {
     public class Rebel : Humour
     {
+        public override string Name => "Rebel";
+
         public override Action GetAction(Suggestion suggestion, float currentHP)
         {
             var AttackChance = 3;

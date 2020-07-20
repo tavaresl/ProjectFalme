@@ -8,6 +8,8 @@ namespace Assets.Scripts.Domain.Humours
 
     public class Lazy : Humour
     {
+        public override string Name => "Lazy";
+
         public override Action GetAction(Suggestion suggestion, float currentHP)
         {
             var AttackChance = 1;

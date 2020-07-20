@@ -17,6 +17,15 @@ public class EnemyController : MonoBehaviour, ICharacter
 
     public void Draft()
     {
+        Enemy.PickMonsters();
+    }
+
+    public void Init(MonsterSpawner monsterSpawner, Player enemy, MonsterStatsPanelController statsPanelController)
+    {
+        MonsterSpawner = monsterSpawner;
+        Enemy = enemy;
+        int counter = 0;
+
         Monsters = new List<GameObject>();
 
         List<Vector3> positions = new List<Vector3>()
@@ -25,13 +34,12 @@ public class EnemyController : MonoBehaviour, ICharacter
             new Vector3(30f, -30f, 0f),
             new Vector3(40f, 0f, 0f)
         };
-        int counter = 0;
 
 
         for (int i = 0; i < 3; i++)
         {
 
-            GameObject monster = MonsterSpawner.Spawn();
+            GameObject monster = MonsterSpawner.Spawn(statsPanelController);
             monster.transform.SetParent(transform);
             Enemy.ChooseMonster(monster.GetComponent<MonsterController>().Monster);
             Monsters.Add(monster);
@@ -41,14 +49,6 @@ public class EnemyController : MonoBehaviour, ICharacter
 
             counter++;
         }
-
-        Enemy.PickMonsters();
-    }
-
-    public void Init(MonsterSpawner monsterSpawner, Player enemy)
-    {
-        MonsterSpawner = monsterSpawner;
-        Enemy = enemy;
     }
     
     public void PickSuggestion()

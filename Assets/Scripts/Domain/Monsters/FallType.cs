@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Assets.Scripts.Domain.Monsters
 {
     public class FallType : IMonsterType
@@ -16,7 +18,14 @@ namespace Assets.Scripts.Domain.Monsters
 
         }
 
+
         public MonsterType GetMonsterType() { return MonsterType.Fall; }
+
+        public Color GetColor()
+        {
+            return new Color(0.8078f, 0.0980f, 0.0980f);
+        }
+
     }
 
 

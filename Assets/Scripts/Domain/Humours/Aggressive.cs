@@ -6,6 +6,7 @@ namespace Assets.Scripts.Domain.Humours
 {
     public class Aggressive : Humour
     {
+        public override string Name => "Aggressive";
         public override Action GetAction(Suggestion suggestion, float currentHP)
         {
             var AttackChance = 2;

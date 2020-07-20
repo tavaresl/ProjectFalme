@@ -6,6 +6,7 @@ namespace Assets.Scripts.Domain
 {
     public abstract class Humour
     {
+        public abstract string Name { get; }
         public abstract Action GetAction(Suggestion suggestion, float currentHP);
         public virtual Monster GetTarget(Action action, Monster self, IList<Monster> PlayerMonsters, IList<Monster> EnemyMonsters)
         {

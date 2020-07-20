@@ -18,7 +18,7 @@ namespace Assets.Scripts.Controller
         //Random é baseado no relógio, isso é necessário para evitar resultados repetidos.
         private static Random rand = RNG.GetRandom();
 
-        public GameObject Spawn()
+        public GameObject Spawn(MonsterStatsPanelController statsPanelController)
         {
             List<Humour> humours = new List<Humour>
             {
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Controller
 
             var prefabInstance = Instantiate(_monsterPrefab);
             prefabInstance.GetComponent<Image>().sprite = MonsterSprites[rand.Next(0, MonsterSprites.Count)];
-            prefabInstance.GetComponent<MonsterController>().Init(monster);
+            prefabInstance.GetComponent<MonsterController>().Init(monster, statsPanelController);
 
             return prefabInstance;
         }
